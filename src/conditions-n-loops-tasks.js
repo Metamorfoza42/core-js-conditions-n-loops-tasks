@@ -174,8 +174,57 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let ones;
+  let tens;
+  if (num >= 10) {
+    ones = num % 10;
+    tens = Math.floor(num / 10);
+  } else {
+    ones = num;
+    tens = 0;
+  }
+
+  let romanStr = '';
+  for (let i = 1; i <= tens; i += 1) {
+    romanStr += 'X';
+  }
+  switch (ones) {
+    case 0:
+      romanStr += '';
+      break;
+    case 1:
+      romanStr += 'I';
+      break;
+    case 2:
+      romanStr += 'II';
+      break;
+    case 3:
+      romanStr += 'III';
+      break;
+    case 4:
+      romanStr += 'IV';
+      break;
+    case 5:
+      romanStr += 'V';
+      break;
+    case 6:
+      romanStr += 'VI';
+      break;
+    case 7:
+      romanStr += 'VII';
+      break;
+    case 8:
+      romanStr += 'VIII';
+      break;
+    case 9:
+      romanStr += 'IX';
+      break;
+    default:
+      break;
+  }
+
+  return romanStr;
 }
 
 /**
@@ -193,8 +242,57 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let numberToString = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        numberToString += 'minus ';
+        break;
+      case '.':
+      case ',':
+        numberToString += 'point ';
+        break;
+      case '0':
+        numberToString += 'zero ';
+        break;
+      case '1':
+        numberToString += 'one ';
+        break;
+      case '2':
+        numberToString += 'two ';
+        break;
+      case '3':
+        numberToString += 'three ';
+        break;
+      case '4':
+        numberToString += 'four ';
+        break;
+      case '5':
+        numberToString += 'five ';
+        break;
+      case '6':
+        numberToString += 'six ';
+        break;
+      case '7':
+        numberToString += 'seven ';
+        break;
+      case '8':
+        numberToString += 'eight ';
+        break;
+      case '9':
+        numberToString += 'nine ';
+        break;
+      default:
+        break;
+    }
+  }
+  let numberToStringTrimmed = '';
+  for (let i = 0; i < numberToString.length - 1; i += 1) {
+    numberToStringTrimmed += numberToString[i];
+  }
+
+  return numberToStringTrimmed;
 }
 
 /**
