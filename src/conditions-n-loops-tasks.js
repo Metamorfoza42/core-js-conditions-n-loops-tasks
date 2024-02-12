@@ -152,7 +152,7 @@ function isIsoscelesTriangle(a, b, c) {
 
   const triangleExists = minNum + minNum2 > maxNum;
   const triangleIsIsosceles =
-    maxNum === minNum || maxNum === minNum || minNum === minNum2;
+    maxNum === minNum || maxNum === minNum2 || minNum === minNum2;
   if (triangleExists && triangleIsIsosceles) {
     return true;
   }
