@@ -41,8 +41,15 @@ function isPositive(number) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let maxNum = a;
+  if (b > maxNum) {
+    maxNum = b;
+  }
+  if (c > maxNum) {
+    maxNum = c;
+  }
+  return maxNum;
 }
 
 /**
@@ -63,8 +70,53 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+
+  const queenPossibleCoords = [[queen.x, queen.y]];
+  const kingIn1stQuadrant = king.x > queen.x && king.y > queen.y;
+  const kingIn2ndQuadrant = king.x < queen.x && king.y > queen.y;
+  const kingIn3rdQuadrant = king.x < queen.x && king.y < queen.y;
+  const kingIn4thQuadrant = king.x > queen.x && king.y < queen.y;
+  let qCoordX = queen.x;
+  let qCoordY = queen.y;
+  let qCoords = [];
+  if (kingIn1stQuadrant) {
+    while (qCoordX < 8 && qCoordY < 8) {
+      qCoordX += 1;
+      qCoordY += 1;
+      qCoords = [qCoordX, qCoordY];
+      queenPossibleCoords.push(qCoords);
+    }
+  } else if (kingIn2ndQuadrant) {
+    while (qCoordX > 1 && qCoordY < 8) {
+      qCoordX -= 1;
+      qCoordY += 1;
+      qCoords = [qCoordX, qCoordY];
+      queenPossibleCoords.push(qCoords);
+    }
+  } else if (kingIn3rdQuadrant) {
+    while (qCoordX > 1 && qCoordY > 1) {
+      qCoordX -= 1;
+      qCoordY -= 1;
+      qCoords = [qCoordX, qCoordY];
+      queenPossibleCoords.push(qCoords);
+    }
+  } else if (kingIn4thQuadrant) {
+    while (qCoordX < 8 && qCoordY > 1) {
+      qCoordX += 1;
+      qCoordY -= 1;
+      qCoords = [qCoordX, qCoordY];
+      queenPossibleCoords.push(qCoords);
+    }
+  } else return 'Oops, something wrong with given coordinates';
+
+  const isCoordIncluded = queenPossibleCoords.some(
+    (coordArr) => coordArr[0] === king.x && coordArr[1] === king.y
+  );
+  return isCoordIncluded;
 }
 
 /**
@@ -85,8 +137,27 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  let maxNum = a;
+  let minNum = b;
+  let minNum2 = c;
+  if (b > maxNum) {
+    maxNum = b;
+    minNum = a;
+  }
+  if (c > maxNum) {
+    maxNum = c;
+    minNum2 = b;
+  }
+
+  const triangleExists = minNum + minNum2 > maxNum;
+  const triangleIsIsosceles =
+    maxNum === minNum || maxNum === minNum || minNum === minNum2;
+  if (triangleExists && triangleIsIsosceles) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
